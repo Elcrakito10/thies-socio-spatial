@@ -1,0 +1,57 @@
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    container_name: thies_postgis
+    environment:
+      POSTGRES_DB: thies_socio_spatial
+      POSTGRES_USER: thies
+      POSTGRES_PASSWORD: thies_dev_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U thies -d thies_socio_spatial"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  backend:
+    build: ./backend
+    container_name: thies_backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/app
+      - ./data:/data
+    ports:
+      - "8000:8000"
+    environment:
+      POSTGRES_DB: thies_socio_spatial
+      POSTGRES_USER: thies
+      POSTGRES_PASSWORD: thies_dev_password
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      DJANGO_DEBUG: "1"
+    depends_on:
+      db:
+        condition: service_healthy
+  api:
+    image: node:20-alpine
+    container_name: thies_api
+    working_dir: /app
+    command: sh -c "npm install --omit=dev --no-audit --no-fund && node index.mjs"
+    volumes:
+      - ./api:/app
+    ports:
+      - "8001:8001"
+    environment:
+      PORT: 8001
+      POSTGRES_DB: thies_socio_spatial
+      POSTGRES_USER: thies
+      POSTGRES_PASSWORD: thies_dev_password
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  postgres_data:

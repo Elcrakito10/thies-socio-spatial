@@ -1,0 +1,21 @@
+# Dépendances et builds
+node_modules/
+dist/
+frontend/venv/
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.whl
+# Secrets : ne jamais publier
+.env
+.env.*
+!.env.example
+frontend/.env
+# Éditeurs / système
+.idea/
+.vscode/*
+!.vscode/extensions.json
+desktop.ini
+.DS_Store
+*.log

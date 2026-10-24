@@ -1,0 +1,9 @@
+{
+  "name": "thies-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "API de lecture (GeoJSON / JSON) au-dessus de la base PostGIS thies_socio_spatial",
+  "scripts": { "start": "node index.mjs" },
+  "dependencies": { "pg": "^8.13.0" }
+}
