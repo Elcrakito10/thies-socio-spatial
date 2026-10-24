@@ -116,6 +116,9 @@ export default function GeoQueryPanel({ onAround, onRoute, ctx, rules, setRules,
             <button className={mode === "or" ? "on" : ""} onClick={() => setMode("or")} title="Au moins un critère">OU</button>
           </span>
         </div>
+        {rules.length > 1 && <p className="gx-q-explain">{mode === "and"
+          ? <><b>ET</b> : un quartier est retenu seulement s'il respecte <u>tous</u> les critères ci-dessous (résultat plus restreint).</>
+          : <><b>OU</b> : un quartier est retenu s'il respecte <u>au moins un</u> des critères ci-dessous (résultat plus large).</>}</p>}
         {rules.length === 0 ? <p className="gx-q-empty">Aucun critère. Posez une question ou construisez un critère.</p> :
           <ul>{rules.map((r, i) => <li key={i}><span>{describeRule(r, ctx)}</span><button onClick={() => setRules(rules.filter((_, j) => j !== i))} aria-label="Retirer ce critère"><X size={12} /></button></li>)}</ul>}
       </div>

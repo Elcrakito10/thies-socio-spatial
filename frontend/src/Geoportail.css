@@ -230,5 +230,13 @@ li.soon{opacity:.6}
 .gx-guide-me i{display:block;width:0;height:0;margin:auto;border-left:12px solid transparent;border-right:12px solid transparent;border-bottom:30px solid #ef4444;filter:drop-shadow(0 0 4px #fff)}
 .gx-guide-dest{font-size:34px;color:#fde047;text-shadow:0 0 6px #000}
 .gx-classm select{flex:1;min-width:0;padding:6px 8px;border-radius:6px;border:1px solid var(--hz-line,rgba(150,200,225,.25));background:transparent;color:inherit;font-size:11px}
-.gx-classm select option{color:#12303f}
+
 .geo-legend-method{margin:-2px 0 6px;font-size:9.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;opacity:.65}
+/* Listes déroulantes lisibles (fond opaque, texte contrasté) */
+.app.dark .gx-q select,.app.dark .gx-tool-chip select,.app.dark .gx-classm select{color-scheme:dark}
+.app.dark .gx-q select option,.app.dark .gx-tool-chip select option,.app.dark .gx-classm select option{background:#0d202f;color:#f1f8fc}
+.app.light .gx-q select option,.app.light .gx-tool-chip select option,.app.light .gx-classm select option{background:#fff;color:#12303f}
+.gx-q select{font-size:12.5px;font-weight:600}
+.gx-q-explain{margin:8px 0 6px;padding:8px 10px;border-left:3px solid #22d3ee;border-radius:4px;background:rgba(34,211,238,.08);font-size:11.5px;line-height:1.5}
+.gx-q-explain b{color:#22d3ee}
+.app.light .gx-q-explain b{color:#0e7490}
